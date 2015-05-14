@@ -1,9 +1,13 @@
+package mc;
+
 import hep.aida.IFitResult;
 import hep.aida.IFunction;
 import jhplot.*;
+
 import org.apache.commons.math3.special.Erf;
 
 import javax.swing.*;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,22 +23,41 @@ public class Histo extends JFrame implements ActionListener {
         double wartosc;
         new Histo();
     }
-
+    private Box.Filler filler1;
+    private JComboBox jComboBox1;
+    private JComboBox jComboBox2;
+    private JComboBox jComboBox4;
+    private JLabel jLabel1;
+    private JLabel jLabel2;
+    private JLabel jLabel3;
+    private JLayeredPane jLayeredPane1;
+    private JLayeredPane jLayeredPane2;
+    //ivate JLayeredPane jLayeredPane31;
+    private JMenu jMenu1 ;
+    private JMenu jMenu2;
+    private JLayeredPane jLayeredPane3;
+    private JMenuBar jMenuBar1;
+    private JMenuItem jMenuItem1;
+    private JMenuItem jMenuItem2;
+    private JMenuItem jMenuItem3;
+    private JPanel load_histo_panel;
+    private JPanel fit_panel;
     private JInternalFrame jInternalFrame1;
-    private JTabbedPane jTabbedPane1;
-    private JTabbedPane jTabbedPane2;
-    private JTabbedPane jTabbedPane3;
+  //  private JTabbedPane jTabbedPane1;
+    //private JTabbedPane jTabbedPane2;
+   // private JTabbedPane jTabbedPane3;
     private JTabbedPane jTabbedPane4;
+    private JTabbedPane jTabbedPane5;
     private Container jPanel1;
     private JPanel jPanel2;
     // private JDesktopPane jDesktopPane1;
-    private JTabbedPane jTabbedPane5;
-    private CheckBoxList list;
-    private JCheckBox[] boxes;
+   // private JTabbedPane jTabbedPane5;
+    //private CheckBoxList list;
+   // private JCheckBox[] boxes;
     private FileReader fr;
     private String name;
     private double wartosc;
-    private HPlot c1;
+    private static HPlot c1;
     private HFitter polynomialfitter;
     private HFitter functionFitter;
     private F1D fFitGaus;
@@ -43,8 +66,8 @@ public class Histo extends JFrame implements ActionListener {
     private int signalFit;
     private int BckFit;
     private double[] Pars;
-    H1D h1;
-    private JLayeredPane jLayeredPane1;
+    static H1D h1;
+   // private JLayeredPane jLayeredPane1;
     private JTabbedPane jTabbedPane6;
     private CheckBoxList list2;
     private JCheckBox[] boxes2;
@@ -63,8 +86,8 @@ public class Histo extends JFrame implements ActionListener {
         this.c1.setNameX("Invariant Mass[GeV]");
         this.c1.setNameY("Counts");
         this.c1.setName("Invariant Mass spectra");
-
-        jTabbedPane5.addTab("Invariant Mass", c1.getCanvasPanel());
+        jLayeredPane3.add(c1.getCanvasPanel());
+       // jTabbedPane5.addTab("Invariant Mass", c1.getCanvasPanel());
 
         read();
         setVisible(true);
@@ -73,400 +96,361 @@ public class Histo extends JFrame implements ActionListener {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">
     private void initComponents() {
+    	jLayeredPane1 = new JLayeredPane();
+        jLayeredPane2 = new JLayeredPane();
+        load_histo_panel = new JPanel();
+        jComboBox1 = new JComboBox();
+        jComboBox2 = new JComboBox();
+        filler1 = new Box.Filler(new Dimension(0, 0), new Dimension(0, 0), new Dimension(0, 32767));
+        jLabel1 = new JLabel();
+        jLabel2 = new JLabel();
+        jLabel3 = new JLabel();
+        jComboBox4 = new JComboBox();
+        fit_panel = new JPanel();
+        jLayeredPane3 = new JLayeredPane();
+        jMenuBar1 = new JMenuBar();
+        jMenu1 = new JMenu();
+        jMenuItem1 = new JMenuItem();
+        jMenuItem3 = new JMenuItem();
+        jMenuItem2 = new JMenuItem();
+        jMenu2 = new JMenu();
 
-        jPanel1 = new javax.swing.JPanel();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
-        jTabbedPane3 = new javax.swing.JTabbedPane();
-        jTabbedPane4 = new javax.swing.JTabbedPane();
-        jTabbedPane2 = new javax.swing.JTabbedPane();
-        jLayeredPane1 = new javax.swing.JLayeredPane();
-        jTabbedPane5 = new javax.swing.JTabbedPane();
-        jTabbedPane6 = new javax.swing.JTabbedPane();
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        list = new CheckBoxList();
-        boxes = new JCheckBox[12];
-        boxes[0] = new JCheckBox("pp", true);
+        GroupLayout jLayeredPane1Layout = new GroupLayout(jLayeredPane1);
+        jLayeredPane1.setLayout(jLayeredPane1Layout);
+        jLayeredPane1Layout.setHorizontalGroup(
+            jLayeredPane1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGap(0, 277, Short.MAX_VALUE)
+        );
+        jLayeredPane1Layout.setVerticalGroup(
+            jLayeredPane1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGap(0, 363, Short.MAX_VALUE)
+        );
 
-        boxes[1] = new JCheckBox("PbPb", true);
+        load_histo_panel.setBorder(BorderFactory.createTitledBorder("V0 histograms"));
 
-        boxes[2] = new JCheckBox("PbPb-0-10%", true);
 
-        boxes[3] = new JCheckBox("PbPb-10-20%", true);
-        boxes[4] = new JCheckBox("PbPb-20-30%", true);
-        boxes[5] = new JCheckBox("PbPb-30-40%", true);
-        boxes[6] = new JCheckBox("PbPb-40-50%", true);
-        boxes[7] = new JCheckBox("PbPb-50-60%", true);
-        boxes[8] = new JCheckBox("PbPb-60-70%", true);
-        boxes[9] = new JCheckBox("PbPb-70-80%", true);
-        boxes[10] = new JCheckBox("PbPb-80-90%", true);
-        boxes[11] = new JCheckBox("PbPb-90-100%", true);
-        list.setListData(boxes);
+        jLabel1.setText("K0");
+        jLabel1.setToolTipText("");
 
-        list2 = new CheckBoxList();
-        boxes2 = new JCheckBox[12];
-        boxes2[0] = new JCheckBox("pp", true);
+        jLabel2.setText("Lambda");
+        jLabel3.setText("AntiLambda");
 
-        boxes2[1] = new JCheckBox("PbPb", true);
 
-        boxes2[2] = new JCheckBox("PbPb-0-10%", true);
+        		jComboBox1.addItem("pp");
+      		jComboBox1.addItem("PbPb");
+      		jComboBox1.addItem("PbPb-0-10%");
+      		jComboBox1.addItem("PbPb-10-20%");
+      		jComboBox1.addItem("PbPb-20-30%");
+      		jComboBox1.addItem("PbPb-30-40%");
+      		jComboBox1.addItem("PbPb-40-50%");
+      		jComboBox1.addItem("PbPb-50-60%");
+      		jComboBox1.addItem("PbPb-60-70%");
+      		jComboBox1.addItem("PbPb-70-80%");
+      		jComboBox1.addItem("PbPb-80-90%");
+      		jComboBox1.addItem("PbPb-90-100%");
+      		jComboBox2.addItem("pp");
+      		jComboBox2.addItem("PbPb");
+      		jComboBox2.addItem("PbPb-0-10%");
+      		jComboBox2.addItem("PbPb-10-20%");
+      		jComboBox2.addItem("PbPb-20-30%");
+      		jComboBox2.addItem("PbPb-30-40%");
+      		jComboBox2.addItem("PbPb-40-50%");
+      		jComboBox2.addItem("PbPb-50-60%");
+      		jComboBox2.addItem("PbPb-60-70%");
+      		jComboBox2.addItem("PbPb-70-80%");
+      		jComboBox2.addItem("PbPb-80-90%");
+      		jComboBox2.addItem("PbPb-90-100%");
+      		jComboBox4.addItem("pp");
+      		jComboBox4.addItem("PbPb");
+      		jComboBox4.addItem("PbPb-0-10%");
+      		jComboBox4.addItem("PbPb-10-20%");
+      		jComboBox4.addItem("PbPb-20-30%");
+      		jComboBox4.addItem("PbPb-30-40%");
+      		jComboBox4.addItem("PbPb-40-50%");
+      		jComboBox4.addItem("PbPb-50-60%");
+      		jComboBox4.addItem("PbPb-60-70%");
+      		jComboBox4.addItem("PbPb-70-80%");
+      		jComboBox4.addItem("PbPb-80-90%");
+      		jComboBox4.addItem("PbPb-90-100%");
+      		
+        GroupLayout load_histo_panelLayout = new GroupLayout(load_histo_panel);
+        load_histo_panel.setLayout(load_histo_panelLayout);
+        load_histo_panelLayout.setHorizontalGroup(
+            load_histo_panelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGroup(load_histo_panelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(load_histo_panelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addGroup(load_histo_panelLayout.createSequentialGroup()
+                        .addGroup(load_histo_panelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, load_histo_panelLayout.createSequentialGroup()
+                        .addGroup(load_histo_panelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                            .addComponent(jComboBox4, GroupLayout.Alignment.LEADING, 0, 200, Short.MAX_VALUE)
+                            .addComponent(jComboBox2, GroupLayout.Alignment.LEADING, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel1, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(GroupLayout.Alignment.LEADING, load_histo_panelLayout.createSequentialGroup()
+                                .addComponent(filler1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jComboBox1, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())))
+        );
+        load_histo_panelLayout.setVerticalGroup(
+            load_histo_panelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGroup(load_histo_panelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, GroupLayout.PREFERRED_SIZE, 9, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jComboBox1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jComboBox2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel3)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jComboBox4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(filler1, GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
-        boxes2[3] = new JCheckBox("PbPb-10-20%", true);
-        boxes2[4] = new JCheckBox("PbPb-20-30%", true);
-        boxes2[5] = new JCheckBox("PbPb-30-40%", true);
-        boxes2[6] = new JCheckBox("PbPb-40-50%", true);
-        boxes2[7] = new JCheckBox("PbPb-50-60%", true);
-        boxes2[8] = new JCheckBox("PbPb-60-70%", true);
-        boxes2[9] = new JCheckBox("PbPb-70-80%", true);
-        boxes2[10] = new JCheckBox("PbPb-80-90%", true);
-        boxes2[11] = new JCheckBox("PbPb-90-100%", true);
-        list2.setListData(boxes2);
-        jTabbedPane1.addTab("K0", list);
-        jTabbedPane1.addTab("Lambda", list2);
-        jTabbedPane1.addTab("AntiLambda", jTabbedPane5);
+        fit_panel.setBorder(BorderFactory.createTitledBorder("Fitting panel"));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(
-                javax.swing.GroupLayout.Alignment.TRAILING,
-                jPanel1Layout.createSequentialGroup()
-                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE).addContainerGap()));
-        jPanel1Layout.setVerticalGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addComponent(
-                jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 264,
-                javax.swing.GroupLayout.PREFERRED_SIZE));
+        GroupLayout fit_panelLayout = new GroupLayout(fit_panel);
+        fit_panel.setLayout(fit_panelLayout);
+        fit_panelLayout.setHorizontalGroup(
+            fit_panelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        fit_panelLayout.setVerticalGroup(
+            fit_panelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGap(0, 217, Short.MAX_VALUE)
+        );
 
-        jTabbedPane6.setBackground(new java.awt.Color(144, 56, 48));
-        // jTabbedPane5.addTab("tab1", c1.getCanvasPanel());
+        javax.swing.GroupLayout jLayeredPane2Layout = new GroupLayout(jLayeredPane2);
+        jLayeredPane2.setLayout(jLayeredPane2Layout);
+        jLayeredPane2Layout.setHorizontalGroup(
+            jLayeredPane2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addComponent(load_histo_panel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(fit_panel, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jLayeredPane2Layout.setVerticalGroup(
+            jLayeredPane2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGroup(jLayeredPane2Layout.createSequentialGroup()
+                .addComponent(load_histo_panel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(fit_panel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 19, Short.MAX_VALUE))
+        );
+        jLayeredPane2.setLayer(load_histo_panel, JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane2.setLayer(fit_panel, JLayeredPane.DEFAULT_LAYER);
 
-        jTabbedPane5.setBounds(20, 0, 600, 500);
-        jLayeredPane1.add(jTabbedPane5, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        GroupLayout jLayeredPane3Layout = new GroupLayout(jLayeredPane3);
+        jLayeredPane3.setLayout(jLayeredPane3Layout);
+        jLayeredPane3Layout.setHorizontalGroup(
+            jLayeredPane3Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGap(0, 569, Short.MAX_VALUE)
+        );
+        jLayeredPane3Layout.setVerticalGroup(
+            jLayeredPane3Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jMenu1.setText("File");
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        jMenuItem1.setText("jMenuItem1");
+        jMenu1.add(jMenuItem1);
+
+        jMenuItem3.setText("jMenuItem3");
+        jMenu1.add(jMenuItem3);
+
+        jMenuItem2.setText("jMenuItem2");
+        jMenu1.add(jMenuItem2);
+
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Edit");
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
+
+        GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(
-                layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                javax.swing.GroupLayout.PREFERRED_SIZE).addGap(18, 18, 18)
-                        .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 712, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)));
-        layout.setVerticalGroup(layout
-                .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(
-                        layout.createSequentialGroup()
-                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE).addGap(0, 242, Short.MAX_VALUE))
-                .addComponent(jLayeredPane1));
-
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jLayeredPane2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLayeredPane3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLayeredPane1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLayeredPane1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLayeredPane2)
+                    .addComponent(jLayeredPane3))
+                .addGap(0, 21, Short.MAX_VALUE))
+        );
         pack();
     }// </editor-fold>
 
     public void read() {
         int i;
-        // final String nazwa;
-        // final H1D h1 = new H1D("Histogram", 25, 0.0D, 2.5D);
-        // Random r = new Random();
-        // // h1.setFill(true);
-        // h1.setFillColor(new Color(r.nextFloat(), r.nextFloat(),
-        // r.nextFloat(), 0.5F));
-        // h1.setErrX(false);
-        // h1.setErrY(true);
-        // h1.setPenWidthErr(2);
-        boxes[0].addItemListener(new ItemListener() {
-            // private String nazwa;
-
-            // @Override
-
-            public void itemStateChanged(ItemEvent ev) {
-
-                JCheckBox src = (JCheckBox) ev.getSource();
-                // System.out.println(src.isSelected());
-                plot_hist(0.0D, 1.0D, "pp-K0.txt", 110);
-            }
-        });
-        // nazwa="/home/rafal/pp-K0.txt";
-        boxes[1].addItemListener(new ItemListener() {
-            // private String nazwa;
-
-            // @Override
-
-            public void itemStateChanged(ItemEvent ev) {
-
-                JCheckBox src = (JCheckBox) ev.getSource();
-                // System.out.println(src.isSelected());
-                plot_hist(0.0D, 1.0D, "PbPb-K0.txt", 1450);
-            }
-        });
-        boxes[2].addItemListener(new ItemListener() {
-            // private String nazwa;
-
-            // @Override
-
-            public void itemStateChanged(ItemEvent ev) {
-
-                JCheckBox src = (JCheckBox) ev.getSource();
-                // System.out.println(src.isSelected());
-                plot_hist(0.0D, 1.0D, "dataset11.txt", 2600);
-                FunctionFitter(0.487, 0.508, 0.3, 1D);
-            }
-        });
-        boxes[3].addItemListener(new ItemListener() {
-            // private String nazwa;
-
-            // @Override
-
-            public void itemStateChanged(ItemEvent ev) {
-
-                JCheckBox src = (JCheckBox) ev.getSource();
-                // System.out.println(src.isSelected());
-                plot_hist(0.0D, 1.0D, "dataset12.txt", 2000);
-            }
-        });
-        boxes[4].addItemListener(new ItemListener() {
-            // private String nazwa;
-
-            // @Override
-
-            public void itemStateChanged(ItemEvent ev) {
-
-                JCheckBox src = (JCheckBox) ev.getSource();
-                // System.out.println(src.isSelected());
-                plot_hist(0.0D, 1.0D, "dataset13.txt", 1400);
-            }
-        });
-        boxes[5].addItemListener(new ItemListener() {
-            // private String nazwa;
-
-            // @Override
-
-            public void itemStateChanged(ItemEvent ev) {
-
-                JCheckBox src = (JCheckBox) ev.getSource();
-                // System.out.println(src.isSelected());
-                plot_hist(0.0D, 1.0D, "dataset14.txt", 850);
-            }
-        });
-        boxes[6].addItemListener(new ItemListener() {
-            // private String nazwa;
-
-            // @Override
-
-            public void itemStateChanged(ItemEvent ev) {
-
-                JCheckBox src = (JCheckBox) ev.getSource();
-                // System.out.println(src.isSelected());
-                plot_hist(0.0D, 1.0D, "dataset15.txt", 420);
-            }
-        });
-        boxes[7].addItemListener(new ItemListener() {
-            // private String nazwa;
-
-            // @Override
-
-            public void itemStateChanged(ItemEvent ev) {
-
-                JCheckBox src = (JCheckBox) ev.getSource();
-                // System.out.println(src.isSelected());
-                plot_hist(0.0D, 1.0D, "dataset16.txt", 220);
-            }
-        });
-        boxes[8].addItemListener(new ItemListener() {
-            // private String nazwa;
-
-            // @Override
-
-            public void itemStateChanged(ItemEvent ev) {
-
-                JCheckBox src = (JCheckBox) ev.getSource();
-                // System.out.println(src.isSelected());
-                plot_hist(0.0D, 1.0D, "dataset17.txt", 140);
-            }
-        });
-        boxes[9].addItemListener(new ItemListener() {
-            // private String nazwa;
-
-            // @Override
-
-            public void itemStateChanged(ItemEvent ev) {
-
-                JCheckBox src = (JCheckBox) ev.getSource();
-                // System.out.println(src.isSelected());
-                plot_hist(0.0D, 1.0D, "dataset18.txt", 60);
-            }
-        });
-        boxes[10].addItemListener(new ItemListener() {
-            // private String nazwa;
-
-            // @Override
-
-            public void itemStateChanged(ItemEvent ev) {
-
-                JCheckBox src = (JCheckBox) ev.getSource();
-                // System.out.println(src.isSelected());
-                plot_hist(0.0D, 1.0D, "dataset19.txt", 35);
-            }
-        });
-        boxes[11].addItemListener(new ItemListener() {
-            // private String nazwa;
-
-            // @Override
-
-            public void itemStateChanged(ItemEvent ev) {
-
-                JCheckBox src = (JCheckBox) ev.getSource();
-                // System.out.println(src.isSelected());
-                plot_hist(0.0D, 1.0D, "dataset20.txt", 2.2);
-            }
-        });
-        boxes2[0].addItemListener(new ItemListener() {
-            // private String nazwa;
-
-            // @Override
-
-            public void itemStateChanged(ItemEvent ev) {
-
-                JCheckBox src = (JCheckBox) ev.getSource();
-                // System.out.println(src.isSelected());
-                plot_hist(1.0D, 2.0D, "pp-Lambda.txt", 150);
-            }
-        });
-        // nazwa="/home/rafal/pp-K0.txt";
-        boxes2[1].addItemListener(new ItemListener() {
-            // private String nazwa;
-
-            // @Override
-
-            public void itemStateChanged(ItemEvent ev) {
-
-                JCheckBox src = (JCheckBox) ev.getSource();
-                // System.out.println(src.isSelected());
-                plot_hist(1.0D, 2.0D, "PbPb-Lambda.txt", 820);
-            }
-        });
-        boxes2[2].addItemListener(new ItemListener() {
-            // private String nazwa;
-
-            // @Override
-
-            public void itemStateChanged(ItemEvent ev) {
-
-                JCheckBox src = (JCheckBox) ev.getSource();
-                // System.out.println(src.isSelected());
-                plot_hist(1.0D, 2.0D, "dataset21.txt", 1200);
-            }
-        });
-        boxes2[3].addItemListener(new ItemListener() {
-            // private String nazwa;
-
-            // @Override
-
-            public void itemStateChanged(ItemEvent ev) {
-
-                JCheckBox src = (JCheckBox) ev.getSource();
-                // System.out.println(src.isSelected());
-                plot_hist(1.0D, 2.0D, "dataset22.txt", 1150);
-            }
-        });
-        boxes2[4].addItemListener(new ItemListener() {
-            // private String nazwa;
-
-            // @Override
-
-            public void itemStateChanged(ItemEvent ev) {
-
-                JCheckBox src = (JCheckBox) ev.getSource();
-                // System.out.println(src.isSelected());
-                plot_hist(1.0D, 2.0D, "dataset23.txt", 850);
-            }
-        });
-        boxes2[5].addItemListener(new ItemListener() {
-            // private String nazwa;
-
-            // @Override
-
-            public void itemStateChanged(ItemEvent ev) {
-
-                JCheckBox src = (JCheckBox) ev.getSource();
-                // System.out.println(src.isSelected());
-                plot_hist(1.0D, 2.0D, "dataset24.txt", 500);
-            }
-        });
-        boxes2[6].addItemListener(new ItemListener() {
-            // private String nazwa;
-
-            // @Override
-
-            public void itemStateChanged(ItemEvent ev) {
-
-                JCheckBox src = (JCheckBox) ev.getSource();
-                // System.out.println(src.isSelected());
-                plot_hist(1.0D, 2.0D, "dataset25.txt", 300);
-            }
-        });
-        boxes2[7].addItemListener(new ItemListener() {
-            // private String nazwa;
-
-            // @Override
-
-            public void itemStateChanged(ItemEvent ev) {
-
-                JCheckBox src = (JCheckBox) ev.getSource();
-                // System.out.println(src.isSelected());
-                plot_hist(1.0D, 2.0D, "dataset26.txt", 150);
-            }
-        });
-        boxes2[8].addItemListener(new ItemListener() {
-            // private String nazwa;
-
-            // @Override
-
-            public void itemStateChanged(ItemEvent ev) {
-
-                JCheckBox src = (JCheckBox) ev.getSource();
-                // System.out.println(src.isSelected());
-                plot_hist(1.0D, 2.0D, "dataset27.txt", 60);
-            }
-        });
-        boxes2[9].addItemListener(new ItemListener() {
-            // private String nazwa;
-
-            // @Override
-
-            public void itemStateChanged(ItemEvent ev) {
-
-                JCheckBox src = (JCheckBox) ev.getSource();
-                // System.out.println(src.isSelected());
-                plot_hist(1.0D, 2.0D, "dataset28.txt", 35);
-            }
-        });
-        boxes2[10].addItemListener(new ItemListener() {
-            // private String nazwa;
-
-            // @Override
-
-            public void itemStateChanged(ItemEvent ev) {
-
-                JCheckBox src = (JCheckBox) ev.getSource();
-                // System.out.println(src.isSelected());
-                plot_hist(1.0D, 2.0D, "dataset29.txt", 10);
-            }
-        });
-        boxes2[11].addItemListener(new ItemListener() {
-            // private String nazwa;
-
-            // @Override
-
-            public void itemStateChanged(ItemEvent ev) {
-
-                JCheckBox src = (JCheckBox) ev.getSource();
-                // System.out.println(src.isSelected());
-                plot_hist(1.0D, 2.0D, "/home/rafal/datasets/dataset30.txt", 8);
-            }
-        });
-
-        // System.out.println("Wczytano liczbÄ: "+wartosc);
-
-    }
-
+    	jComboBox1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e){
+				jComboBox1= (JComboBox)e.getSource();
+			     String s = (String)jComboBox1.getSelectedItem();
+			     
+			   System.out.print(s);
+			     
+				if (s == "pp"){
+					plot_hist(0.0D, 1.0D, "pp-K0.txt", 2600);
+				}
+				else if (s == "PbPb"){
+					  plot_hist(0.0D, 1.0D, "PbPb-K0.txt", 2600);
+				}
+				else if (s == "PbPb-0-10%"){
+					  plot_hist(0.0D, 1.0D, "dataset11.txt", 2600);
+				}	
+				else if (s == "PbPb-10-20%"){
+					  plot_hist(0.0D, 1.0D, "dataset12.txt", 2600);
+				}	
+				else if (s == "PbPb-20-30%"){
+					  plot_hist(0.0D, 1.0D, "dataset13.txt", 2600);
+				}	
+				else if (s == "PbPb-30-40%"){
+					  plot_hist(0.0D, 1.0D, "dataset14.txt", 2600);
+				}	
+				else if (s == "PbPb-40-50%"){
+					  plot_hist(0.0D, 1.0D, "dataset15.txt", 2600);
+				}	
+				else if (s == "PbPb-50-60%"){
+					plot_hist(0.0D, 1.0D, "dataset15.txt", 2600);
+				}	
+				else if (s == "PbPb-60-70%"){
+					plot_hist(0.0D, 1.0D, "dataset15.txt", 2600);
+				}	
+				else if (s == "PbPb-70-80%"){
+					plot_hist(0.0D, 1.0D, "dataset15.txt", 2600);
+				}	
+				else if (s == "PbPb-80-90%"){
+					plot_hist(0.0D, 1.0D, "dataset15.txt", 2600);
+				}	
+				else if (s == "PbPb-90-100%"){
+					plot_hist(0.0D, 1.0D, "dataset15.txt", 2600);
+				}	
+		}
+	});
+  
+  jComboBox2.addActionListener(new ActionListener() {
+	
+		
+			public void actionPerformed(ActionEvent e){
+				jComboBox2= (JComboBox)e.getSource();
+			     String s = (String)jComboBox2.getSelectedItem();
+			     
+			   System.out.print(s);
+			     
+				if (s == "pp"){
+					plot_hist(0.0D, 1.0D, "dataset15.txt", 2600);
+				}
+				else if (s == "PbPb"){
+				//	Histo.this.plot_hist("./PbPb-Lambda.txt", 0.0D, 2.0D);
+				}
+				else if (s == "PbPb-0-10%"){
+				//	Histo.this.plot_hist("dataset21.txt", 0.0D, 2.0D);
+				}	
+				else if (s == "PbPb-10-20%"){
+				//	Histo.this.plot_hist("dataset22.txt", 0.0D, 2.0D);
+				}	
+				else if (s == "PbPb-20-30%"){
+				//	Histo.this.plot_hist("dataset23.txt", 0.0D, 2.0D);
+				}	
+				else if (s == "PbPb-30-40%"){
+					//Histo.this.plot_hist("dataset24.txt", 0.0D, 2.0D);
+				}	
+				else if (s == "PbPb-40-50%"){
+					//Histo.this.plot_hist("dataset25.txt", 0.0D, 2.0D);
+				}	
+				else if (s == "PbPb-50-60%"){
+					//Histo.this.plot_hist("dataset26.txt", 0.0D, 2.0D);
+				}	
+				else if (s == "PbPb-60-70%"){
+					//Histo.this.plot_hist("dataset27.txt", 0.0D, 2.0D);
+				}	
+				else if (s == "PbPb-70-80%"){
+					//Histo.this.plot_hist("dataset28.txt", 0.0D, 2.0D);
+				}	
+				else if (s == "PbPb-80-90%"){
+					//Histo.this.plot_hist("dataset29.txt", 0.0D, 2.0D);
+				}	
+				else if (s == "PbPb-90-100%"){
+					//Histo.this.plot_hist("dataset30.txt", 0.0D, 2.0D);
+				}	
+		}
+	});
+		
+  jComboBox4.addActionListener(new ActionListener() {
+		
+		
+		public void actionPerformed(ActionEvent e){
+			jComboBox4= (JComboBox)e.getSource();
+		     String s = (String)jComboBox4.getSelectedItem();
+		     
+		   System.out.print(s);
+		     
+			if (s == "pp"){
+				//Histo.plot_hist("./pp-AntiLambda.txt", 0.0D, 2.0D);
+			}
+			else if (s == "PbPb"){
+			//	Histo.this.plot_hist("./PbPb-AntiLambda.txt", 0.0D, 2.0D);
+			}
+			else if (s == "PbPb-0-10%"){
+				//Histo.this.plot_hist("dataset31.txt", 0.0D, 2.0D);
+			}	
+			else if (s == "PbPb-10-20%"){
+				//Histo.this.plot_hist("dataset32.txt", 0.0D, 2.0D);
+			}	
+			else if (s == "PbPb-20-30%"){
+				//Histo.this.plot_hist("dataset33.txt", 0.0D, 2.0D);
+			}	
+			else if (s == "PbPb-30-40%"){
+				//Histo.this.plot_hist("dataset34.txt", 0.0D, 2.0D);
+			}	
+			else if (s == "PbPb-40-50%"){
+				//Histo.this.plot_hist("dataset35.txt", 0.0D, 2.0D);
+			}	
+			else if (s == "PbPb-50-60%"){
+				//Histo.this.plot_hist("dataset36.txt", 0.0D, 2.0D);
+			}	
+			else if (s == "PbPb-60-70%"){
+				//Histo.this.plot_hist("dataset37.txt", 0.0D, 2.0D);
+			}	
+			else if (s == "PbPb-70-80%"){
+				//Histo.this.plot_hist("dataset38.txt", 0.0D, 2.0D);
+			}	
+			else if (s == "PbPb-80-90%"){
+				//Histo.this.plot_hist("dataset39.txt", 0.0D, 2.0D);
+			}	
+			else if (s == "PbPb-90-100%"){
+				//Histo.this.plot_hist("dataset40.txt", 0.0D, 2.0D);
+			}	
+	}
+});
+    	
+ }
+
+
+   
 
     public void plot_hist(double xminrange, double xmaxrange, String fileName, double yAxisMax)  {
         name = fileName;
@@ -567,49 +551,9 @@ public class Histo extends JFrame implements ActionListener {
             this.c1.drawStatBox(h1, 300, 50);
             this.c1.refreshFrame();
 
-//         //OTWIERANIE PLIKU:
-//         try {
-//         fr = new FileReader(name);
-//         } catch (FileNotFoundException e) {
-//         System.out.println("BÅ?ÄD PRZY OTWIERANIU PLIKU!");
-//         System.exit(1);
-//         }
-//
-//         StreamTokenizer st = new StreamTokenizer(fr);
-//         ODCZYT KOLEJNYCH "TOKENÃW" Z PLIKU:
-//         try {
-//         while ((wartosc = st.nextToken()) != StreamTokenizer.TT_EOF) {
-//         if (wartosc == StreamTokenizer.TT_WORD)
-//         System.out.println("Wczytano sÅowo: " + st.sval);
-//         else if (wartosc == StreamTokenizer.TT_NUMBER)
-//         System.out.println("Wczytano liczbÄ: " + st.nval);
-//         //h1.fill(st.nval);
-//
-//         }
-//
-//
-//
-//
-//         } catch (IOException e) {
-//         System.out.println("BÅ?ÄD ODCZYTU Z PLIKU!");
-//         System.exit(2);
-//         }
-            // c1.setLegendPos(WIDTH, HIDE_ON_CLOSE);
-            //
-            // c1.draw(h1);
-            // c1.drawStatBox(h1);
-            // c1.refreshFrame();
+	}
 
-//         ZAMYKANIE PLIKU:
-//         try {
-//         fr.close();
-//         } catch (IOException e) {
-//         System.out.println("BÅ?ÄD PRZY ZAMYKANIU PLIKU!");
-//         System.exit(3);
-//         }
-        }
-
-
+	
 
     void FunctionFitter(double minGaus, double maxGaus, double minPoly,
                         double maxPoly) {
@@ -704,21 +648,23 @@ public class Histo extends JFrame implements ActionListener {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Histo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Histo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Histo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Histo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         // </editor-fold>
 
 		/* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new NewJFrame1().setVisible(true);
+                new Histo().setVisible(true);
             }
         });
     }
 }
+
+
